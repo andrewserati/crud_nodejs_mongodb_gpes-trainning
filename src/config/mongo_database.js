@@ -1,8 +1,10 @@
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://dbAndrewForTests:jurupinga@andrewgpes-hnhnn.mongodb.net/test?retryWrites=true&w=majority"
-const client = new MongoClient(uri, { useNewUrlParser: true , useUnifiedTopology: true});
+const mongoose = require('mongoose');
+const url = "mongodb+srv://dbAndrewForTests:jurupinga@andrewgpes-hnhnn.mongodb.net/test?retryWrites=true&w=majority"
 
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  client.close();
+mongoose.connect(url, { useNewUrlParser: true , useUnifiedTopology: true}, (err) => {
+  if (err) console.log('Deu ruim véi');
 });
+
+mongoose.connection.once("open", () => 
+  console.log("MongoDB funfando topzera!")
+);
